@@ -30,6 +30,7 @@ const BankCard = ({
             </p>
           </article>
         </div>
+        ``
         <div className="bank-card_icon">
           <Image
             src="/icons/Paypass.svg"
