@@ -13,26 +13,21 @@ import CustomInput from "./CustomInput";
 import { authFormScema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(2, {
-    message: "The password should be at least 2 characters long",
-  }),
-});
-
 const Authform = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof authFormScema>>({
-    resolver: zodResolver(authFormScema),
+  const formSchema = authFormScema(type);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof authFormScema>) {
+  function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     console.log(values);
     setIsLoading(false);
@@ -70,6 +65,59 @@ const Authform = ({ type }: { type: string }) => {
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              {type === "sign-up" && (
+                <>
+                  <div className="flex gap-4">
+                    <CustomInput
+                      name="firstName"
+                      placeholder="Enter your First Name"
+                      label="First Name"
+                      control={form.control}
+                    />
+                    <CustomInput
+                      name="lastName"
+                      placeholder="Enter your Last Name"
+                      label="Last Name"
+                      control={form.control}
+                    />
+                  </div>
+                  <CustomInput
+                    name="address1"
+                    placeholder="Enter your specific address"
+                    label="Address"
+                    control={form.control}
+                  />
+                  <div className="flex gap-4">
+                    <CustomInput
+                      name="state"
+                      placeholder="Example: NY"
+                      label="state"
+                      control={form.control}
+                    />
+                    <CustomInput
+                      name="postalCode"
+                      placeholder="Example: 11101"
+                      label="Postal Code"
+                      control={form.control}
+                    />
+                  </div>
+
+                  <div className="flex gap-4">
+                    <CustomInput
+                      name="dob"
+                      placeholder="YYYY-MM-DD"
+                      label="Date of Birth"
+                      control={form.control}
+                    />
+                    <CustomInput
+                      name="ssn"
+                      placeholder="Example: 1234"
+                      label="SSN"
+                      control={form.control}
+                    />
+                  </div>
+                </>
+              )}
               <CustomInput
                 name="email"
                 placeholder="Enter your email"
