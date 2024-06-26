@@ -2,43 +2,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "./ui/button";
+
+import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import CustomInput from "./CustomInput";
+import { authFormScema } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(2, {
-    message: "Wrong password",
+    message: "The password should be at least 2 characters long",
   }),
 });
 
 const Authform = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof authFormScema>>({
+    resolver: zodResolver(authFormScema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  function onSubmit(values: z.infer<typeof authFormScema>) {
+    setIsLoading(true);
     console.log(values);
+    setIsLoading(false);
   }
 
   return (
@@ -73,47 +70,48 @@ const Authform = ({ type }: { type: string }) => {
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
+              <CustomInput
                 name="email"
-                render={({ field }) => (
-                  <div className="form-item">
-                    <FormLabel className="form-label">Email</FormLabel>
-                    <div className="flex w-full flex-col">
-                      <FormControl>
-                        <Input
-                          placeholder="Enter your email"
-                          className="input-class"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className="form-message mt-2" />
-                    </div>
-                  </div>
-                )}
-              />
-              <FormField
+                placeholder="Enter your email"
+                label="Email"
                 control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <div className="form-item">
-                    <FormLabel className="form-label">Password</FormLabel>
-                    <div className="flex w-full flex-col">
-                      <FormControl>
-                        <Input
-                          placeholder="Enter your password"
-                          className="input-class"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className="form-message mt-2" />
-                    </div>
-                  </div>
-                )}
               />
-              <Button type="submit">Submit</Button>
+              <CustomInput
+                name="password"
+                placeholder="Enter your password"
+                label="Password"
+                control={form.control}
+              />
+
+              <div className="flex flex-col gap-4">
+                <Button type="submit" className="form-btn" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <Loader2 size={20} className="animate-spin" />
+                      &nbsp; Loading...
+                    </>
+                  ) : type === "sign-in" ? (
+                    "Sign In"
+                  ) : (
+                    "Sign Up"
+                  )}
+                </Button>
+              </div>
             </form>
           </Form>
+          <footer className="flex justify-center gap-1">
+            <p className="text-14 font-normal text-gray-600">
+              {type === "sign-in"
+                ? "Don't have an account?"
+                : "Already have an account?"}
+            </p>
+            <Link
+              className="form-link"
+              href={type === "sign-in" ? "/sign-up" : "/sign-in"}
+            >
+              {type === "sign-in" ? "Sign Up" : "Sign In"}
+            </Link>
+          </footer>
         </>
       )}
     </section>
