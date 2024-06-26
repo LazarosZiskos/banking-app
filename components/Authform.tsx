@@ -2,9 +2,44 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "./ui/button";
+
+const formSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(2, {
+    message: "Wrong password",
+  }),
+});
 
 const Authform = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values);
+  }
 
   return (
     <section className="auth-form">
@@ -35,7 +70,51 @@ const Authform = ({ type }: { type: string }) => {
       {user ? (
         <div className="flex flex-col gap-4">{/* PlaidLink */}</div>
       ) : (
-        <>FORM</>
+        <>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <div className="form-item">
+                    <FormLabel className="form-label">Email</FormLabel>
+                    <div className="flex w-full flex-col">
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your email"
+                          className="input-class"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="form-message mt-2" />
+                    </div>
+                  </div>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <div className="form-item">
+                    <FormLabel className="form-label">Password</FormLabel>
+                    <div className="flex w-full flex-col">
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your password"
+                          className="input-class"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="form-message mt-2" />
+                    </div>
+                  </div>
+                )}
+              />
+              <Button type="submit">Submit</Button>
+            </form>
+          </Form>
+        </>
       )}
     </section>
   );
