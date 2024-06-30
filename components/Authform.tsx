@@ -13,7 +13,7 @@ import CustomInput from "./CustomInput";
 import { authFormScema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from "@/lib/actions/user.actions";
+import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 
 const Authform = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -41,11 +41,11 @@ const Authform = ({ type }: { type: string }) => {
       }
 
       if (type === "sign-in") {
-        // const response = await signIn({
-        //   email: data.email,
-        //   password: data.password,
-        // });
-        // if (response) router.push("/");
+        const response = await signIn({
+          email: data.email,
+          password: data.password,
+        });
+        if (response) router.push("/");
       }
     } catch (error) {
       console.error(error);
@@ -110,9 +110,9 @@ const Authform = ({ type }: { type: string }) => {
                   />
                   <div className="flex gap-4">
                     <CustomInput
-                      name="State"
+                      name="state"
                       placeholder="Example: NY"
-                      label="state"
+                      label="State"
                       control={form.control}
                     />
                     <CustomInput
