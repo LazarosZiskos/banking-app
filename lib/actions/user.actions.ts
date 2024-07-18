@@ -29,28 +29,26 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
   } catch (error) {
     console.log(error)
   }
-}
+};
 
-export const signIn = async ({email, password} : signInProps) => {
-    try {
-      const { account } = await createAdminClient();
-      const session = await account.createEmailPasswordSession(email, password);
+export const signIn = async ({ email, password }: signInProps) => {
+  try {
+    const { account } = await createAdminClient();
+    const session = await account.createEmailPasswordSession(email, password);
 
-  cookies().set("appwrite-session", session.secret, {
-    path: "/",
-    httpOnly: true,
-    sameSite: "strict",
-    secure: true,
-  });
+    cookies().set("appwrite-session", session.secret, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+    });
 
-      const user = await getUserInfo({userId: session.userId})
+    const user = await getUserInfo({ userId: session.userId }) 
 
-      return parseStringify(user)
-        
-    } catch (error) {
-        console.log('Error', error)
-        
-    }
+    return parseStringify(user);
+  } catch (error) {
+    console.error('Error', error);
+  };
 }
 
 export const signUp  = async ({password, ...userData}: SignUpParams) => {
