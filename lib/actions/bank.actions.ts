@@ -13,7 +13,7 @@ import { plaidClient } from "../plaid";
 import { parseStringify } from "../utils";
 
 import { getBank, getBanks } from "./user.actions";
-import { getTransactionsByBankId } from "./transaction.action";
+import { getTransactionsByBankId } from "./transaction.actions";
 
 // Get multiple bank accounts
 export const getAccounts = async ({ userId }: getAccountsProps) => {
@@ -45,7 +45,7 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
           type: accountData.type as string,
           subtype: accountData.subtype! as string,
           appwriteItemId: bank.$id,
-          sharaebleId: bank.shareableId,
+          shareableId: bank.shareableId,
         };
 
         return account;
