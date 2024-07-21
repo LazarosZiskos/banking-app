@@ -65,7 +65,7 @@ And much more, including robust **code architecture** and **reusability**.
 
 **Dashboard**
 
-<img src="Horizon-Bank-Wallpaper.png" alt="Dashboard" width="100%">
+<img src="public/Horizon-Bank-Wallpaper.png" alt="Horizon Wallpaper Image" width="100%">
 
 **Connected Banks Page**
 
