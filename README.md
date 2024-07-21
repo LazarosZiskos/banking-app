@@ -1,4 +1,4 @@
-<img src="public/Horizon-Bank-Wallpaper" alt="Horizon Wallpaper Image" width="100%">
+<img src="public/Horizon-Bank-Wallpaper.png" alt="Horizon Wallpaper Image" width="100%">
 
 # Horizon Banking Platform
 
@@ -39,9 +39,7 @@ npm run dev
 
 ## Features
 
-<img src="public/Horizon-Bank-Wallpaper.png" alt="Horizon bank wallpaper" width="300">
-
-Authentication: Utilizes an exceptionally secure SSR authentication system with comprehensive validations and authorizations.
+👉 **Authentication** - Utilizes an exceptionally secure SSR authentication system with comprehensive validations and authorizations.
 
 👉 **Bank Connectivity** - Employs Plaid for linking multiple bank accounts.
 
@@ -63,7 +61,7 @@ And much more, including robust **code architecture** and **reusability**.
 
 **Sign In Page**
 
-<img src="public/horizon-connectbank.pgn" alt="SignIn" width="100%">
+<img src="public/horizon-signin.png" alt="SignIn" width="100%">
 
 **Dashboard**
 
