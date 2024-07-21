@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img src="public/Horizon-Bank-Wallpaper" alt="Horizon Wallpaper Image" width="100%">
 
-## Getting Started
+# Horizon Banking Platform
 
-First, run the development server:
+Horizon banking platform is an finance related application that lets the user connect multiple bank accounts and cards to the platform and transfer funds between other users of the platform. Moreover, the user can monitor their financial transactions in real-time and manage their finances altogether.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Technologies Used](#technologies-used)
+- [Contact Information](#contact-information)
+- [Resources](#resources)
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/LazarosZiskos/banking-app.git
+   ```
+1. **Navigate to the project directory:**
+   ```bash
+   cd banking-app
+   ```
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+**Run the development server:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<img src="public/Horizon-Bank-Wallpaper.png" alt="Horizon bank wallpaper" width="300">
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Authentication: Utilizes an exceptionally secure SSR authentication system with comprehensive validations and authorizations.
 
-## Learn More
+👉 **Bank Connectivity** - Employs Plaid for linking multiple bank accounts.
 
-To learn more about Next.js, take a look at the following resources:
+👉 **Dashboard** - Provides a general overview of the user's account, including the total balance from all connected banks, recent transactions, and spending across different categories.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+👉 **Linked Banks** - Displays a detailed list of all connected banks along with their respective balances and account information.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+👉 **Transaction Log** - Features pagination and filtering options for viewing transaction history across different banks.
 
-## Deploy on Vercel
+👉 **Live Updates** - Automatically updates all relevant pages when new bank accounts are connected.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+👉 **Fund Transfers** - Enables users to transfer funds to other accounts via Dwolla, requiring necessary details and the recipient's bank ID.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+👉 **Adaptive Design** - Ensures the application adjusts smoothly to various screen sizes and devices, delivering a consistent user experience on desktops, tablets, and mobile devices.
+
+And much more, including robust **code architecture** and **reusability**.
+
+## Screenshots
+
+**Sign In Page**
+
+<img src="public/horizon-connectbank.pgn" alt="SignIn" width="100%">
+
+**Dashboard**
+
+<img src="Horizon-Bank-Wallpaper.png" alt="Dashboard" width="100%">
+
+**Connected Banks Page**
+
+<img src="public/horizon-mybanks.png" alt="Horizon my banks page" width="100%">
+
+**Transactions Page**
+
+<img src="public/horizon-transactions.png" alt="Transactions Page" width="100%">
+
+**Connect Bank**
+
+<img src="public/horizon-connectbank.png" alt="Connect Bank Page" width="100%">
+
+### Technologies Used
+
+![My Skills](https://skillicons.dev/icons?i=ts,react,next,tailwind,appwrite,github,vercel,figma)
+
+## Contact Information:
+
+[![linkedin](https://skillicons.dev/icons?i=linkedin)](https://www.linkedin.com/in/lazaros-ziskos/)
+[![github](https://skillicons.dev/icons?i=github)](https://github.com/LazarosZiskos)
+
+#### Made by Lazaros Ziskos
+
+#### Email: **ziskoslaz@gmail.com**
+
+#### Tel: **+30 6980228219**
+
+## Resources:
+
+- [Next.js](https://nextjs.org/docs) - Explore the powerful features and API of Next.js.
+- [React](https://react.dev/) - Dive deeper into the world of React.,
+- [Tailwind](https://v2.tailwindcss.com/docs/) - Master the utility-first approach with Tailwind CSS.
+- [ShadCN](https://ui.shadcn.com/docs) - Discover the comprehensive UI components offered by ShadCN.
+- [Appwrite](https://appwrite.io/docs) - Open-source backend platform.
+- [Plaid](https://plaid.com) - World leading data network and payments platform.
+
+### Thank you for reading
