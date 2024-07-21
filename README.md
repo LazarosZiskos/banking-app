@@ -4,6 +4,8 @@
 
 Horizon banking platform is an finance related application that lets the user connect multiple bank accounts and cards to the platform and transfer funds between other users of the platform. Moreover, the user can monitor their financial transactions in real-time and manage their finances altogether.
 
+**[View deployed application here](https://banking-app-alpha-six.vercel.app)**
+
 ## Table of Contents
 
 - [Installation](#installation)
